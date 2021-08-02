@@ -1,0 +1,50 @@
+﻿<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<template type="TableHeader"></template>
+
+<table>
+    <tr>
+        <script type="c#">
+            var output = "";
+    
+            foreach (var column in Model.Columns) 
+            {
+                output += $"<th>{column}</th>";
+            }
+    
+            return output;
+		</script>
+    </tr>
+	
+    <script type="c#">
+		var output = "";
+
+		foreach (var row in Model.Rows) 
+		{
+			output += $@"
+			  <tr>
+				<td>{row[0]}</td>
+				<td>{row[1]}</td>
+			  </tr>
+			";
+		}
+
+		return output;
+	</script>
+</table>
