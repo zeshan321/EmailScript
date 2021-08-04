@@ -16,7 +16,7 @@ namespace EmailScript
         private const int MaxDepth = 9;
         private readonly ConcurrentDictionary<string, TemplateData> _templates = new();
         
-        public async Task RegisterTemplate(string key, string filePath, Type? model = null)
+        public async Task RegisterTemplateAsync(string key, string filePath, Type? model = null)
         {
             var scriptOptions = ScriptOptions.Default.WithImports("System");
             var text = await File.ReadAllTextAsync(filePath);
@@ -48,10 +48,10 @@ namespace EmailScript
             });
         }
 
-        public Task<string?> GetTemplate<T>(string templateKey, T model)
+        public Task<string?> GetTemplateAsync<T>(string templateKey, T model)
         {
             var template = _templates[templateKey];
-            return Generate(template, model);
+            return GenerateAsync(template, model);
         }
 
         private string PopulateTemplate(string template)
@@ -96,7 +96,7 @@ namespace EmailScript
             }
         }
 
-        private static async Task<string?> Generate<T>(TemplateData data, T model)
+        private static async Task<string?> GenerateAsync<T>(TemplateData data, T model)
         {
             var template = data.Template;
             if (template == null)

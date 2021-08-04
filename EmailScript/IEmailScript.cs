@@ -5,7 +5,7 @@ namespace EmailScript
 {
     public interface IEmailScript
     {
-        Task RegisterTemplate(string key, string filePath, Type? model = null);
-        Task<string?> GetTemplate<T>(string templateKey, T model);
+        Task RegisterTemplateAsync(string key, string filePath, Type? model = null);
+        Task<string?> GetTemplateAsync<T>(string templateKey, T model);
     }
 }

@@ -37,12 +37,14 @@
 
 		foreach (var row in Model.Rows) 
 		{
-			output += $@"
-			  <tr>
-				<td>{row[0]}</td>
-				<td>{row[1]}</td>
-			  </tr>
-			";
+			output += "<tr>";
+
+			for (var i = 0; i < Model.Rows.Count; i++)
+			{
+				output += $"<td>{row[i]}</td>";
+			}			
+
+			output += "</tr>";
 		}
 
 		return output;

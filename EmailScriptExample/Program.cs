@@ -10,11 +10,11 @@ namespace EmailScriptExample
         
         private static async Task Main()
         {
-            await EmailScript.RegisterTemplate("TableHeader", "EmailTemplates\\TableHeader.html");
-            await EmailScript.RegisterTemplate("Table", "EmailTemplates\\Table.html");
-            await EmailScript.RegisterTemplate("Sample", "EmailTemplates\\Sample.html", typeof(BaseModel<ModelExample>));
+            await EmailScript.RegisterTemplateAsync("TableHeader", "EmailTemplates/TableHeader.html");
+            await EmailScript.RegisterTemplateAsync("Table", "EmailTemplates/Table.html");
+            await EmailScript.RegisterTemplateAsync("Sample", "EmailTemplates/Sample.html", typeof(BaseModel<ModelExample>));
                 
-            var test = await EmailScript.GetTemplate("Sample", new BaseModel<ModelExample>
+            var test = await EmailScript.GetTemplateAsync("Sample", new BaseModel<ModelExample>
             {
                 Model = new ModelExample
                 {
