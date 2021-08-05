@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -34,8 +35,18 @@ namespace EmailScript.Extensions
         
         public static string ModifyInlineReturn(this string source)
         {
-            var cleaned = source.Replace("@{", string.Empty).Replace("}", string.Empty);
-            return $"return {cleaned};";
+            var cleaned = source.ReplaceFirst("@{", string.Empty);  
+            return $"return {cleaned.Remove(cleaned.Length - 1)};";
+        }
+        
+        public static string ReplaceFirst(this string text, string search, string replace)
+        {
+            int pos = text.IndexOf(search, StringComparison.Ordinal);
+            if (pos < 0)
+            {
+                return text;
+            }
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
         
         public static IEnumerable<string> ExtractTemplatesString(this string source)
